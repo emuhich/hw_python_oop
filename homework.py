@@ -1,17 +1,17 @@
 class InfoMessage:
     """Информационное сообщение о тренировке."""
-    def __init__(self,training_type,duration,distance,speed,calories):
+    def __init__(self,training_type, duration, distance, speed, calories):
         self.training_type = training_type
         self.duration = round(duration, 3)
         self.distance = round(distance, 3)
         self.speed = round(speed, 3)
         self.calories = round(calories, 3)
-    
+
     def get_message(self):
         message = (f'Тип тренировки: {self.training_type}; Длительность: {self.duration:.3f} ч.; Дистанция: {self.distance:.3f} км; Ср. скорость: {self.speed:.3f} км/ч; Потрачено ккал: {self.calories:.3f}.')
         return message
-    
-    
+
+
 
 class Training:
     """Базовый класс тренировки."""
@@ -19,8 +19,7 @@ class Training:
     def __init__(self,
                  action: int,
                  duration: float,
-                 weight: float,
-                 
+                 weight: float    
                  ) -> None:
         self.action = action
         self.duration = duration
@@ -40,9 +39,9 @@ class Training:
         """Получить количество затраченных калорий."""
         pass
 
-    def show_training_info(self,workout_type,duration,distance,speed,calories) -> InfoMessage:
+    def show_training_info(self,workout_type, duration, distance, speed,calories) -> InfoMessage:
         """Вернуть информационное сообщение о выполненной тренировке."""
-        info = InfoMessage(workout_type,duration,distance,speed,calories)
+        info = InfoMessage(workout_type, duration, distance, speed,calories)
         return info.get_message()
         
 
@@ -52,7 +51,7 @@ class Running(Training):
 
     def __init__(self, action, duration, weight):
 
-        super().__init__(action,duration,weight)
+        super().__init__(action, duration, weight)
         self.M_IN_KM = 1000
         self.workout_type = 'Running'
 
@@ -71,7 +70,7 @@ class SportsWalking(Training):
     """Тренировка: спортивная ходьба."""
 
     def __init__(self, action, duration, weight,height):
-        super().__init__(action,duration,weight)
+        super().__init__(action, duration, weight)
         self.height = height
         self.workout_type = 'SportsWalking'
 
@@ -89,7 +88,7 @@ class SportsWalking(Training):
 class Swimming(Training):
     """Тренировка: плавание."""
     def __init__(self, action, duration, weight, length_pool,count_pool):
-        super().__init__(action,duration,weight)
+        super().__init__(action, duration, weight)
         self.M_IN_KM = 1000
         self.workout_type = 'Swimming'
         self.length_pool = length_pool
@@ -112,17 +111,17 @@ class Swimming(Training):
 def read_package(workout_type: str, data: list) -> Training:
     """Прочитать данные полученные от датчиков."""
     if workout_type == 'RUN':
-        run = Running(data[0],data[1],data[2])
+        run = Running(data[0], data[1], data[2])
 
         return run 
         
     elif workout_type == 'SWM':
-        swm = Swimming(data[0],data[1],data[2],data[3],data[4])
+        swm = Swimming(data[0], data[1], data[2], data[3], data[4])
         
         return swm
 
     else:
-        wlk = SportsWalking(data[0],data[1],data[2],data[3])
+        wlk = SportsWalking(data[0], data[1], data[2], data[3])
 
         return wlk
         
@@ -131,7 +130,7 @@ def read_package(workout_type: str, data: list) -> Training:
 
 def main(training: Training) -> None:
     """Главная функция."""
-    message = training.show_training_info(training.workout_type,training.duration,training.get_distance(),training.get_mean_speed(),training.get_spent_calories())
+    message = training.show_training_info(training.workout_type, training.duration, training.get_distance(), training.get_mean_speed(), training.get_spent_calories())
     print(message)
 
 if __name__ == '__main__':
@@ -144,4 +143,3 @@ if __name__ == '__main__':
     for workout_type, data in packages:
         training = read_package(workout_type, data)
         main(training)
-
