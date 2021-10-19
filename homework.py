@@ -12,7 +12,6 @@ class InfoMessage:
         return message
 
 
-
 class Training:
     """Базовый класс тренировки."""
 
@@ -43,7 +42,6 @@ class Training:
         """Вернуть информационное сообщение о выполненной тренировке."""
         info = InfoMessage(workout_type, duration, distance, speed, calories)
         return info.get_message()
-   
 
 
 class Running(Training):
@@ -63,7 +61,6 @@ class Running(Training):
         calories = (coeff_calorie_1 * super().get_mean_speed() - coeff_calorie_2) * self.weight / self.M_IN_KM * (self.duration * coeff_calorie_3)
 
         return calories
-
 
 
 class SportsWalking(Training):
@@ -114,7 +111,7 @@ def read_package(workout_type: str, data: list) -> Training:
         run = Running(data[0], data[1], data[2])
 
         return run
-  
+
     elif workout_type == 'SWM':
         swm = Swimming(data[0], data[1], data[2], data[3], data[4])
 
@@ -124,8 +121,6 @@ def read_package(workout_type: str, data: list) -> Training:
         wlk = SportsWalking(data[0], data[1], data[2], data[3])
 
         return wlk
-
-
 
 
 def main(training: Training) -> None:
@@ -144,4 +139,3 @@ if __name__ == '__main__':
     for workout_type, data in packages:
         training = read_package(workout_type, data)
         main(training)
-        
