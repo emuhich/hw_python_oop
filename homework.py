@@ -13,7 +13,8 @@ class InfoMessage:
 
 class Training:
     """Базовый класс тренировки."""
-
+    LEN_STEP: float = 0.65
+    M_IN_KM: int = 1000
     def __init__(self,
                  action: int,
                  duration: float,
@@ -22,8 +23,6 @@ class Training:
         self.action = action
         self.duration = duration
         self.weight = weight
-        self.LEN_STEP = 0.65
-        self.M_IN_KM = 1000
 
     def get_distance(self) -> float:
         """Получить дистанцию в км."""
@@ -81,13 +80,13 @@ class SportsWalking(Training):
 
 class Swimming(Training):
     """Тренировка: плавание."""
+    LEN_STEP: float = 1.38
     def __init__(self, action, duration, weight, length_pool, count_pool):
         super().__init__(action, duration, weight)
         self.M_IN_KM = 1000
         self.workout_type = 'Swimming'
         self.length_pool = length_pool
         self.count_pool = count_pool
-        self.LEN_STEP = 1.38
 
     def get_mean_speed(self):
 
