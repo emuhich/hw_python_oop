@@ -19,7 +19,7 @@ class Training:
                  action: int,
                  duration: float,
                  weight: float,
-                 LEN_STEP = 0.65
+                 LEN_STEP=0.65
                  ) -> None:
         self.action = action
         self.duration = duration
