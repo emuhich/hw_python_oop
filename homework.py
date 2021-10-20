@@ -8,8 +8,7 @@ class InfoMessage:
         self.calories = round(calories, 3)
 
     def get_message(self):
-        message = (f'Тип тренировки: {self.training_type}; Длительность: {self.duration:.3f} ч.; Дистанция: {self.distance:.3f} км; Ср. скорость: {self.speed:.3f} км/ч; Потрачено ккал: {self.calories:.3f}.')
-        return message
+        return (f'Тип тренировки: {self.training_type}; Длительность: {self.duration:.3f} ч.; Дистанция: {self.distance:.3f} км; Ср. скорость: {self.speed:.3f} км/ч; Потрачено ккал: {self.calories:.3f}.')
 
 
 class Training:
@@ -58,9 +57,8 @@ class Running(Training):
         coeff_calorie_1 = 18
         coeff_calorie_2 = 20
         coeff_calorie_3 = 60
-        calories = (coeff_calorie_1 * super().get_mean_speed() - coeff_calorie_2) * self.weight / self.M_IN_KM * (self.duration * coeff_calorie_3)
 
-        return calories
+        return (coeff_calorie_1 * super().get_mean_speed() - coeff_calorie_2) * self.weight / self.M_IN_KM * (self.duration * coeff_calorie_3)
 
 
 class SportsWalking(Training):
@@ -77,9 +75,8 @@ class SportsWalking(Training):
         coeff_calorie_2 = 2
         coeff_calorie_3 = 0.029
         coeff_calorie_4 = 60
-        calories = (coeff_calorie_1 * self.weight + (super().get_mean_speed() ** coeff_calorie_2 // self.height) * coeff_calorie_3 * self.weight) * (self.duration * coeff_calorie_4)
 
-        return calories
+        return (coeff_calorie_1 * self.weight + (super().get_mean_speed() ** coeff_calorie_2 // self.height) * coeff_calorie_3 * self.weight) * (self.duration * coeff_calorie_4)
 
 
 class Swimming(Training):
@@ -100,9 +97,8 @@ class Swimming(Training):
 
         coeff_calorie_1 = 1.1
         coeff_calorie_2 = 2
-        calories = (self.get_mean_speed() + coeff_calorie_1) * coeff_calorie_2 * self.weight
 
-        return calories
+        return (self.get_mean_speed() + coeff_calorie_1) * coeff_calorie_2 * self.weight
 
 
 def read_package(workout_type: str, data: list) -> Training:
