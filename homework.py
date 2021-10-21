@@ -14,7 +14,7 @@ class InfoMessage:
             f'Дистанция: {self.distance:.3f} км; '
             f'Ср. скорость: {self.speed:.3f} км/ч; '
             f'Потрачено ккал: {self.calories:.3f}.'
-                )
+        )
 
 
 class Training:
@@ -48,12 +48,12 @@ class Training:
     def show_training_info(self) -> InfoMessage:
         """Вернуть информационное сообщение о выполненной тренировке."""
         return InfoMessage(
-            self.workout_type, 
-            self.duration, 
-            self.get_distance(), 
-            self.get_mean_speed(), 
+            self.workout_type,
+            self.duration,
+            self.get_distance(),
+            self.get_mean_speed(),
             self.get_spent_calories()
-            )
+        )
 
 
 class Running(Training):
@@ -78,7 +78,7 @@ class Running(Training):
             Training.M_IN_KM *
             (self.duration *
             Running.coeff_calorie_3)
-            )
+        )
 
 
 class SportsWalking(Training):
@@ -106,7 +106,7 @@ class SportsWalking(Training):
             self.weight) *
             (self.duration *
             SportsWalking.coeff_calorie_4)
-            )
+        )
 
 
 class Swimming(Training):
@@ -136,7 +136,7 @@ class Swimming(Training):
             Swimming.coeff_calorie_1) *
             Swimming.coeff_calorie_2 *
             self.weight
-            )
+        )
 
 
 def read_package(workout_type: str, data: list) -> Training:
