@@ -75,7 +75,7 @@ class Running(Training):
             super().get_mean_speed() -
             Running.coeff_calorie_2) *
             self.weight /
-            self.M_IN_KM *
+            Training.M_IN_KM *
             (self.duration *
             Running.coeff_calorie_3)
             )
