@@ -71,11 +71,10 @@ class Running(Training):
     def get_spent_calories(self):
 
         coef_return_1 = Running.coeff_calorie_1 * super().get_mean_speed()
-        coef_return_2 = self.weight / Training.M_IN_KM
         coef_return_3 = self.duration * Running.coeff_calorie_3
         coef_return_4 = coef_return_1 - Running.coeff_calorie_2
 
-        return coef_return_4 * coef_return_2 * coef_return_3
+        return (coef_return_4) * self.weight / Training.M_IN_KM * (coef_return_3)
 
 
 class SportsWalking(Training):
